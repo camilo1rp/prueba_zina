@@ -12,14 +12,20 @@ def find_bouncy_percentage(value_target):
         # convert number into list of digit of itself
         list_digit = [int(dig) for dig in str(counter)]
 
-        # check if number is increasing
-        numb_ascending = all([list_digit[dig] <= list_digit[dig + 1]
-                              for dig in range(len(list_digit) - 1)])
-        # check if number is decreasing
-        numb_descending = all([list_digit[dig] >= list_digit[dig + 1]
-                               for dig in range(len(list_digit) - 1)])
+        # check if number is increasing or deacreasing
+        numb_ascending = True
+        numb_descending = True
+        for i in range(len(list_digit) - 1):
+            if list_digit[i] > list_digit[i + 1]:
+                numb_ascending = False
+                break
+        if not numb_ascending:
+            for i in range(len(list_digit) - 1):
+                if list_digit[i] < list_digit[i + 1]:
+                    numb_descending = False
+                    break
 
-        # calculate new bouncing rate
+        # update bouncing rate
         if not numb_ascending and not numb_descending:
             bouncing += 1
         bouncing_rate = bouncing / counter
@@ -27,7 +33,7 @@ def find_bouncy_percentage(value_target):
 
 
 # running function
-target = 99
+target = 90
 num = find_bouncy_percentage(target)
 print(f'least number for which the proportion of bouncy numbers is exactly'
       f' {target}% is {num}')
