@@ -12,13 +12,14 @@ def find_bouncy_percentage(value_target):
         # convert number into list of digit of itself
         list_digit = [int(dig) for dig in str(counter)]
 
-        # check if number is increasing or deacreasing
+        # check if number is increasing or decreasing
         numb_ascending = True
         numb_descending = True
         for i in range(len(list_digit) - 1):
             if list_digit[i] > list_digit[i + 1]:
                 numb_ascending = False
                 break
+        # if is increasing, there is no need to check if is decreasing
         if not numb_ascending:
             for i in range(len(list_digit) - 1):
                 if list_digit[i] < list_digit[i + 1]:
